@@ -1,20 +1,18 @@
-import * as S from './styles'
+import * as S from './styles';
 
-import { Produto } from '../../App'
+import cesta from '../../assets/cesta.png';
+import { paraReal } from '../Produto';
+import { useSelector } from 'react-redux';
+import { RootReducer } from '../../store';
 
-import cesta from '../../assets/cesta.png'
-import { paraReal } from '../Produto'
+const Header = () => {
+  const itensNoCarrinho = useSelector((state: RootReducer) => state.carrinho);
+  const favoritos = useSelector((state: RootReducer) => state.favoritos);
 
-type Props = {
-  itensNoCarrinho: Produto[]
-  favoritos: Produto[]
-}
-
-const Header = ({ itensNoCarrinho, favoritos }: Props) => {
   const valorTotal = itensNoCarrinho.reduce((acc, item) => {
-    acc += item.preco
-    return acc
-  }, 0)
+    acc += item.preco;
+    return acc;
+  }, 0);
 
   return (
     <S.Header>
@@ -27,7 +25,7 @@ const Header = ({ itensNoCarrinho, favoritos }: Props) => {
         </span>
       </div>
     </S.Header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
